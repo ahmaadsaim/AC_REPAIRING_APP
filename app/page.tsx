@@ -1,103 +1,120 @@
+"use client";
 import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import OurServices from "../components/services";
+import WhatsAppFloatingButton from "@/components/WhatsappFolatingButton";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [ratingCount, setRatingCount] = useState(0);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  // Animate 4000+ counter
+  useEffect(() => {
+    let start = 0;
+    const end = 4000;
+    const duration = 2000;
+    const stepTime = Math.abs(Math.floor(duration / end));
+    const timer = setInterval(() => {
+      start += 20;
+      if (start >= end) {
+        clearInterval(timer);
+        setRatingCount(end);
+      } else {
+        setRatingCount(start);
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center w-full">
+
+      {/* Hero Section */}
+      <div className="relative flex flex-col items-center pt-8 pb-16 w-full min-h-[60vh] bg-gradient-to-b from-blue-50 via-white to-blue-100 overflow-hidden">
+        <div className="relative z-10 flex flex-col items-center gap-2 text-center max-w-4xl mx-auto mt-12 px-4 sm:px-6">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-[#24a7f3] leading-tight">
+            WE PROVIDE YOU THE <br /> PROFESSIONAL AC SERVICES
+          </h1>
+          <h2 className="text-sm md:text-base text-black">
+            We bring professional AC repair to your home in just one call.
+          </h2>
+
+
+          <div className="flex flex-col sm:flex-row gap-3 mt-2 justify-center">
+            <Link
+              href="/contact"
+              className="bg-blue-800 text-white px-3 py-1.5 rounded-md font-medium text-sm hover:bg-blue-900 hover:scale-105 transition transform duration-300 inline-block text-center"
+            >
+              Contact Now
+            </Link>
+
+            <Link
+              href="/services"
+              className="bg-blue-800 text-white px-3 py-1.5 rounded-md font-medium text-sm hover:bg-blue-900 hover:scale-105 transition transform duration-300 inline-block text-center"
+            >
+              Services
+            </Link>
+          </div>
+
+
+          {/* Counters */}
+          <div className="mt-6 w-full bg-[#24a7f3] text-white py-4 rounded-lg shadow-lg">
+            <div className="flex flex-col sm:flex-row max-w-7xl mx-auto justify-between items-center px-4 md:px-12 text-sm md:text-base gap-4 sm:gap-0">
+              <div className="flex flex-col items-center">
+                <span className="text-2xl md:text-3xl font-medium">{ratingCount}+</span>
+                <span className="font-light">Customers</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-2xl md:text-3xl font-medium">4.9</span>
+                <span className="font-light">Google Rating</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-2xl md:text-3xl font-medium">7+</span>
+                <span className="font-light">Years of Experience</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* Our Services Section */}
+      <div className="w-full relative z-20 bg-transparent mt-10 px-4 sm:px-6">
+        <OurServices />
+      </div>
+
+      {/* Shop Section */}
+      <div id="shop-section" className="relative z-10 text-center mt-10 mb-4 px-4 sm:px-0">
+        <h1 className="text-3xl md:text-4xl font-bold text-[#24a7f3]">
+          VISIT OUR SHOP
+        </h1>
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-4 mt-4 mb-10 z-10 px-4 sm:px-0">
+        <Image
+          src="/image1.jpeg"
+          alt="Shop Image 1"
+          width={200}
+          height={120}
+          className="rounded-b-md object-cover shadow-lg"
+        />
+        <Image
+          src="/image2.jpeg"
+          alt="Shop Image 2"
+          width={200}
+          height={120}
+          className="rounded-b-md object-cover shadow-lg"
+        />
+        <Image
+          src="/image3.jpeg"
+          alt="Shop Image 3"
+          width={200}
+          height={120}
+          className="rounded-b-md object-cover shadow-lg"
+        />
+      </div>
+
+      <WhatsAppFloatingButton />
     </div>
   );
 }
