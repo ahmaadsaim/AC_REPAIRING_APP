@@ -57,7 +57,7 @@ export default function Home() {
 
 
                     {/* Counters */}
-                    <div className="mt-6 w-full bg-[#24a7f3] text-white py-4 rounded-lg shadow-lg">
+                    <div className="mt-12 w-full bg-[#24a7f3] text-white py-4 rounded-lg shadow-lg">
                         <div className="flex flex-col sm:flex-row max-w-7xl mx-auto justify-between items-center px-4 md:px-12 text-sm md:text-base gap-4 sm:gap-0">
                             <div className="flex flex-col items-center">
                                 <span className="text-2xl md:text-3xl font-medium">{ratingCount}+</span>
