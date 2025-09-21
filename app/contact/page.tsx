@@ -4,10 +4,14 @@ export default function ContactPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" dir="rtl">
       {/* العنوان */}
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-6 leading-snug">
-        تواصل مع <span className="text-blue-600">نايف عنبر</span> صيانة تبريد وتكييف – 
-        خدمات التكييف في مدينة حائل
-      </h1>
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-4 leading-snug">
+  محل <span className="text-blue-600">تبريد وتكييف</span> بحائل
+</h1>
+
+<p className="text-lg sm:text-xl text-gray-700 text-center mb-6">
+  تواصل مع نايف عنبر صيانة تبريد وتكييف – خدمات التكييف في مدينة حائل
+</p>
+
 
       {/* المقدمة */}
       <p className="text-base sm:text-lg text-gray-700 mb-10 text-center sm:text-right leading-relaxed">
